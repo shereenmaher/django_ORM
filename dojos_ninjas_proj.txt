@@ -1,0 +1,76 @@
+run the shell and import models :
+ python manage.py shell
+from dojo_ninja_app.models import Dojo
+from dojo_ninja_app.models import Ninja
+
+create new 3 dojos :
+Dojo.objects.create(name="shereen",city="Ramallah",state="WB")
+Dojo.objects.create(name="doa",city="Jenin",state="WB")
+Dojo.objects.create(name="Hana",city="Hebron",state="South")
+
+
+delete the three dojos we just created :
+ dojo1=Dojo.objects.get(id=1)
+ dojo1.delete()
+dojo2=Dojo.objects.get(id=2)
+ dojo2.delete()
+dojo3=Dojo.objects.get(id=3)
+ dojo3.delete()
+
+create three more dojos:
+
+ Dojo.objects.create(name="Mohammad",city="Nablus",state="North")
+
+ Dojo.objects.create(name="Khaled",city="Tubas",state="North")
+
+ Dojo.objects.create(name="Yazan",city="Betunia",state="Center")
+
+
+create 3 ninjas that belong to the first dojo:
+Ninja.objects.create(firstname="ninja",lastname="bet",dojo=Dojo.objects.get(id=4))
+
+Ninja.objects.create(firstname="ninjano",lastname="batman",dojo=Dojo.objects.get(id=4))
+
+Ninja.objects.create(firstname="naruto",lastname="fire",dojo=Dojo.objects.get(id=4))
+
+
+create 3 ninjas that belong to the second dojo:
+Ninja.objects.create(firstname="conan",lastname="mo",dojo=Dojo.objects.get(id=5))
+
+Ninja.objects.create(firstname="senshi",lastname="tom",dojo=Dojo.objects.get(id=5))
+
+Ninja.objects.create(firstname="rubi",lastname="rob",dojo=Dojo.objects.get(id=5))
+
+
+create 3 ninjas that belong to the third dojo:
+Ninja.objects.create(firstname="sally",lastname="mon",dojo=Dojo.objects.get(id=6))
+
+Ninja.objects.create(firstname="hany",lastname="fed",dojo=Dojo.objects.get(id=6))
+
+Ninja.objects.create(firstname="hanky",lastname="panky",dojo=Dojo.objects.get(id=6))
+
+
+retrieve all ninjas belonging to first dojo:
+ret_ninja=Dojo.objects.get(id=4)
+all_ninjas=ret_ninja.ninjas.all()
+
+retrieve all ninjas belonging to last dojo:
+dojo6=Dojo.objects.get(id=6)
+dojo6_ninjas=dojo6.ninjas.all()
+
+retrieve all ninjas belonging to remaining dojo:
+dojo5=Dojo.objects.get(id=5)
+dojo5_ninjas=dojo5.ninjas.all()
+
+
+create another dojo:
+Dojo.objects.create(name="hiba",city="Ramallah",state="center",desc="smart dojo")
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dojo-Ninja</title>
+</head>
+<body>
+    <div>
+        <h1>Add Dojo</h1>
+        <form action="create_dojo" method="POST">
+            {% csrf_token %}
+            <label for="name">Name:</label>
+            <input type="text" name="name">
+
+            <label for="city">City:</label>
+            <input type="text" name="city">
+
+            <label for="state">State:</label>
+            <input type="text" name="state">
+            
+            <label for="desc">Desc:</label>
+            <input type="text" name="desc">
+
+            <button type="submit">Add Dojo</button>
+        </form>
+    </div>
+
+    <div>
+        <h1>Add Ninja</h1>
+        <form action="createninja" method="POST">
+            {% csrf_token %}
+            <label for="firstname">Firstname:</label>
+            <input type="text" name="firstname">
+
+            <label for="lastname">Lastname:</label>
+            <input type="text" name="lastname">
+
+            <label for="dojo">Dojo:</label>
+            
+            <select name="dojo" id="dojo">
+                {%   for dojo in dojos  %}
+                    <option value="{{ dojo.id  }}">{{dojo.name}}</option>
+                {% endfor  %}
+            </select>
+
+            <button type="submit">Add Ninja</button>
+
+
+        </form>
+    </div>
+
+    <h1>All Dojos</h1>
+    {% for dojo in dojos  %}
+        <h1>Dojoname:{{ dojo.name  }}- Ninjascount for this dojo is {{ dojo.ninjas.count }}
+            <a href="/delete_dojo/{{ dojo.id }}">
+            <button type="button">Delete</button>
+        </a>
+    </h1>
+        <p>dojo city:{{ dojo.city  }}</p>
+        <p>dojo state:{{ dojo.state  }}</p>
+        <p>dojo description:{{ dojo.desc  }}</p>
+        <ul>
+            <h2>ninjas for dojo</h2>
+            {% for ninja in dojo.ninjas.all %}
+                <li>
+                    {{ ninja.firstname }} {{ ninja.lastname }}
+                </li>
+            {% empty %}
+                <li>No ninjas yet.</li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
+</body>
+</html>
