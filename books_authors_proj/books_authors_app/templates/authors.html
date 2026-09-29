@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authors</title>
+</head>
+
+<body>
+
+    <h1>Authors</h1>
+
+    <h2>Add an Author</h2>
+
+    <form action="/authors/create" method="POST">
+
+        {% csrf_token %}
+
+        <label>First Name:</label>
+
+        <input
+            type="text"
+            name="firstname"
+        >
+
+        <br><br>
+
+        <label>Last Name:</label>
+
+        <input
+            type="text"
+            name="lastname"
+        >
+
+        <br><br>
+
+        <label>Notes:</label>
+
+        <input
+            type="text"
+            name="notes"
+        >
+
+        <br><br>
+
+        <button type="submit">
+            Add Author
+        </button>
+
+    </form>
+
+
+    <hr>
+
+
+    <h2>All Authors</h2>
+
+    <table border="1">
+
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Action</th>
+        </tr>
+
+
+        {% for author in authors %}
+
+        <tr>
+
+            <td>
+                {{ author.id }}
+            </td>
+
+            <td>
+                {{ author.firstname }}
+                {{ author.lastname }}
+            </td>
+
+            <td>
+
+                <a href="/authors/{{ author.id }}">
+                    View
+                </a>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+
+    <br>
+
+    <a href="/books">
+        Go to Books
+    </a>
+
+</body>
+</html>

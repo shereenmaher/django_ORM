@@ -22,6 +22,8 @@
             <td>{{  user.lastname   }}</td>
             <td>{{  user.email   }}</td>
             <td>{{ user.age   }}</td>
+            <td><a href="deleteuser/{{ user.id }}">
+            <button type="button">Delete</button></td>
         </tr>
         {%  endfor  %}
     </table>
